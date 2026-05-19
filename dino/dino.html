@@ -1,0 +1,24 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dino Game</title>
+    <link rel="stylesheet" href="dino.css" />
+    <link rel="icon" type="image/png" href="../logo.png" />
+  </head>
+  <body>
+    <a href="../project.html" class="back-btn">← Tillbaka</a>
+    <div class="game-info">
+      <div class="score">Score: <span id="score">0</span></div>
+      <div class="game-over-screen" id="gameOverScreen">
+        <div class="game-over-text">Game Over!</div>
+        <div class="final-score">
+          Final Score: <span id="finalScore">0</span>
+        </div>
+        <button onclick="location.reload()">Spela igen</button>
+      </div>
+    </div>
+    <canvas id="gameCanvas" width="800" height="400"></canvas>
+    <script src="dino.js"></script>
+  </body>
+</html>

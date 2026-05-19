@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f9;
+  font-family: Arial, sans-serif;
+  gap: 1.5rem;
+  color: #333;
+}
+
+#name {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+#score {
+  display: flex;
+  gap: 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#player-score, #computer-score {
+  padding: 0.5rem 1rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.co {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  width: min(600px, 92vw);
+}
+
+.arena-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: bold;
+  color: #666;
+}
+
+.cho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.plaCho, .comcho {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.plaCho img, .comcho img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+}
+
+.plaCho img.show, .comcho img.show {
+  opacity: 1;
+}
+
+.vs-badge {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #999;
+}
+
+.talk {
+  margin-top: 1rem;
+}
+
+#result {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background: #eee;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.content {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.choice-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.choice-btn img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 5px;
+  background: #fff;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.choice-btn:hover img {
+  transform: scale(1.05);
+  border-color: #333;
+}
+
+.choice-btn span {
+  font-weight: bold;
+  color: #555;
+}
+
+.back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 10px 15px;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  z-index: 1000;
+}
+
+.back-btn:hover {
+  background-color: #555;
+}

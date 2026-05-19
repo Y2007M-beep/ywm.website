@@ -1,0 +1,205 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, Arial, sans-serif;
+  background: radial-gradient(ellipse at center, #1a4a1a 0%, #0d2e0d 60%, #060f06 100%);
+  color: #e6eef8;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ── Outer wrapper ── */
+.parent {
+  width: 100%;
+  max-width: 860px;
+  padding: 1rem 1.2rem;
+}
+
+/* ── Card table surface ── */
+.container {
+  background: rgba(0, 60, 0, 0.45);
+  border: 2px solid rgba(255, 215, 0, 0.25);
+  border-radius: 20px;
+  padding: 1rem 1.4rem 1rem;
+  box-shadow:
+    0 0 60px rgba(0, 80, 0, 0.4),
+    0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+/* ── Title ── */
+.container h1 {
+  text-align: center;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ffd700;
+  text-shadow: 0 0 16px rgba(255, 215, 0, 0.5);
+  margin-bottom: 0.7rem;
+}
+
+/* ── Game area: dealer on top, player on bottom ── */
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.dealer,
+.player {
+  background: rgba(0, 40, 0, 0.4);
+  border: 1px solid rgba(255, 215, 0, 0.15);
+  border-radius: 12px;
+  padding: 0.6rem 0.8rem 0.5rem;
+}
+
+.dealer h2,
+.player h2 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 215, 0, 0.6);
+  margin-bottom: 0.4rem;
+}
+
+/* ── Card row ── */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: flex-end;
+  min-height: clamp(90px, 13vh, 120px);
+}
+
+/* ── Single card ── */
+.card-wrapper {
+  width: clamp(56px, 8vw, 76px);
+  height: clamp(84px, 12vw, 114px);
+  perspective: 900px;
+  flex-shrink: 0;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 380ms cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+.card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+}
+
+.card-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-face.back  { transform: rotateY(0deg); }
+.card-face.front { transform: rotateY(180deg); }
+
+/* drop-in animation */
+.dealing {
+  opacity: 0;
+  transform: translateY(-18px) scale(1.06);
+  animation: dropIn 280ms forwards ease;
+}
+@keyframes dropIn {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* subtle lift on hover */
+.card-wrapper:hover .card-inner {
+  transform: translateY(-5px) rotateX(4deg);
+}
+
+/* ── Scores ── */
+#player-score,
+#dealer-score {
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  color: rgba(200, 230, 255, 0.7);
+}
+
+/* ── Buttons ── */
+.controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+
+button {
+  background: linear-gradient(180deg, #b8860b, #8b6508);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.3rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s, transform 0.15s;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+}
+
+button:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* ── Result ── */
+#result {
+  text-align: center;
+  margin-top: 0.6rem;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: 700;
+  color: #ffd700;
+  min-height: 1.4rem;
+  letter-spacing: 0.5px;
+}
+
+.back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 10px 15px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-family: sans-serif;
+  z-index: 1000;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background-color 0.2s;
+}
+
+.back-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}

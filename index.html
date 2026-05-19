@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f0f0f" />
+    <title>Yazn Wael Mohammad</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" href="logo.png" />
+  </head>
+  <body class="dark-theme hero-page">
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">YWM</a>
+        <button
+          type="button"
+          class="nav-toggle"
+          aria-label="Öppna meny"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+        <ul class="nav-menu" id="primary-navigation">
+          <li><a href="index.html" class="nav-link active">Hem</a></li>
+          <li><a href="about.html" class="nav-link">Om mig</a></li>
+          <li><a href="project.html" class="nav-link">Projekt</a></li>
+          <li><a href="gallery.html" class="nav-link">Galleri</a></li>
+          <li><a href="contact.html" class="nav-link">Kontakt</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Yazn Wael Mohammad</h1>
+        <p class="tagline">
+          <span class="animated-text">Teknikprogram student</span>
+          <span class="tagline-sep" aria-hidden="true">|</span>
+          <span class="animated-text">Webb utvecklare</span>
+          <span class="tagline-sep" aria-hidden="true">|</span>
+          <span class="animated-text">teknisk entusiast</span>
+        </p>
+        <a href="contact.html" class="cta-button">Kontakta mig</a>
+      </div>
+    </section>
+
+    <section class="about-preview">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text">
+            <h2>Välkommen</h2>
+            <p>
+              Jag är en passionerad utvecklare som är engagerad i att skapa
+              vackra och funktionella digitala upplevelser. Med en stark grund i
+              moderna webbteknologier, omvandlar jag idéer till verklighet genom
+              ren, effektiv kod.
+            </p>
+            <a href="about.html" class="explore-button">Läs mer om mig</a>
+          </div>
+          <div class="about-image">
+            <div class="image-placeholder">
+              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient
+                    id="grad1"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="100%"
+                  >
+                    <stop
+                      offset="0%"
+                      style="stop-color: #667eea; stop-opacity: 1"
+                    />
+                    <stop
+                      offset="100%"
+                      style="stop-color: #764ba2; stop-opacity: 1"
+                    />
+                  </linearGradient>
+                </defs>
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="95"
+                  fill="url(#grad1)"
+                  opacity="0.1"
+                  stroke="url(#grad1)"
+                  stroke-width="2"
+                />
+                <circle cx="100" cy="80" r="35" fill="url(#grad1)" />
+                <ellipse
+                  cx="100"
+                  cy="150"
+                  rx="45"
+                  ry="40"
+                  fill="url(#grad1)"
+                  opacity="0.8"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- GSAP Core + ScrollTrigger -->
+    <script src="nav.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+      (function () {
+        if (
+          typeof gsap === "undefined" ||
+          typeof ScrollTrigger === "undefined"
+        ) {
+          return;
+        }
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        var reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        if (reduceMotion) {
+          gsap.set([".hero-content h1", ".tagline", ".cta-button"], {
+            opacity: 1,
+            y: 0,
+          });
+        } else {
+          gsap.set([".hero-content h1", ".tagline", ".cta-button"], {
+            opacity: 0,
+            y: 40,
+          });
+
+          var heroTL = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+          heroTL
+            .to(".hero-content h1", { opacity: 1, y: 0, duration: 1 })
+            .to(".tagline", { opacity: 1, y: 0, duration: 0.8 }, "-=0.5")
+            .to(".cta-button", { opacity: 1, y: 0, duration: 0.8 }, "-=0.4");
+
+          gsap.to(".hero-content h1", {
+            textShadow:
+              "0 0 40px rgba(102,126,234,0.8), 0 0 60px rgba(118,75,162,0.5), 2px 2px 4px rgba(0,0,0,0.5)",
+            duration: 1.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: 1,
+          });
+
+          gsap.to(".cta-button", {
+            boxShadow: "0 4px 30px rgba(102,126,234,0.8)",
+            duration: 1.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: 2.5,
+          });
+        }
+
+        gsap.from(".about-text", {
+          scrollTrigger: {
+            trigger: ".about-preview",
+            start: "top 80%",
+          },
+          x: reduceMotion ? 0 : -60,
+          opacity: reduceMotion ? 1 : 0,
+          duration: reduceMotion ? 0 : 0.8,
+          ease: "power2.out",
+        });
+
+        gsap.from(".about-image", {
+          scrollTrigger: {
+            trigger: ".about-preview",
+            start: "top 80%",
+          },
+          x: reduceMotion ? 0 : 60,
+          opacity: reduceMotion ? 1 : 0,
+          duration: reduceMotion ? 0 : 0.8,
+          ease: "power2.out",
+        });
+      })();
+    </script>
+  </body>
+</html>

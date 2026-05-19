@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sten Sax Påse</title>
+    <link rel="stylesheet" href="rps.css">
+    <link rel="icon" type="image/png" href="../logo.png" />
+</head>
+<body>
+    <a href="../project.html" class="back-btn">← Tillbaka</a>
+
+    <h1 id="name">✊ Sten · ✌️ Sax · 🖐 Påse</h1>
+
+    <!-- Poäng -->
+    <div id="score">
+        <p id="player-score">⚡ Du: 0</p>
+        <p id="computer-score">🤖 Dator: 0</p>
+    </div>
+
+    <!-- Arena -->
+    <div class="co">
+        <div class="arena-labels">
+            <span>🧍 Ditt val</span>
+            <span>Datorns val 🤖</span>
+        </div>
+
+        <div class="cho">
+            <!-- Spelarens val -->
+            <div class="plaCho">
+                <img src="rock.png"     id="rock-p"     alt="Sten">
+                <img src="scissors.png" id="scissors-p" alt="Sax">
+                <img src="paper.png"    id="paper-p"    alt="Påse">
+            </div>
+
+            <div class="vs-badge">VS</div>
+
+            <!-- Datorns val -->
+            <div class="comcho">
+                <img src="rock.png"     id="rock-c"     alt="Sten">
+                <img src="scissors.png" id="scissors-c" alt="Sax">
+                <img src="paper.png"    id="paper-c"    alt="Påse">
+            </div>
+        </div>
+
+        <!-- Resultat -->
+        <div class="talk">
+            <p id="result">Välj ett alternativ nedan!</p>
+        </div>
+    </div>
+
+    <!-- Valknappar -->
+    <div class="container">
+        <div class="content">
+            <div class="choice-btn" onclick="play('rock')">
+                <img src="rock.png" alt="Sten">
+                <span>✊ Sten</span>
+            </div>
+            <div class="choice-btn" onclick="play('scissors')">
+                <img src="scissors.png" alt="Sax">
+                <span>✌️ Sax</span>
+            </div>
+            <div class="choice-btn" onclick="play('paper')">
+                <img src="paper.png" alt="Påse">
+                <span>🖐 Påse</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const choices = ["rock", "paper", "scissors"];
+        let playerScore = 0;
+        let computerScore = 0;
+
+        function play(playerChoice) {
+            // Visa spelarens val
+            ["rock-p", "scissors-p", "paper-p"].forEach(id => {
+                document.getElementById(id).classList.remove("show");
+            });
+            document.getElementById(playerChoice + "-p").classList.add("show");
+
+            // Datorns val (slumpmässigt)
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+            ["rock-c", "scissors-c", "paper-c"].forEach(id => {
+                document.getElementById(id).classList.remove("show");
+            });
+            document.getElementById(computerChoice + "-c").classList.add("show");
+
+            // Avgör vinnare
+            const result = document.getElementById("result");
+            if (playerChoice === computerChoice) {
+                result.textContent = "⚖️ Oavgjort – prova igen!";
+                result.style.color = "#ffe066";
+                result.style.background = "rgba(255,220,0,0.1)";
+            } else if (
+                (playerChoice === "rock"     && computerChoice === "scissors") ||
+                (playerChoice === "scissors" && computerChoice === "paper")   ||
+                (playerChoice === "paper"    && computerChoice === "rock")
+            ) {
+                playerScore++;
+                document.getElementById("player-score").textContent = "⚡ Du: " + playerScore;
+                result.textContent = "🎉 Du vinner!";
+                result.style.color = "#69ff85";
+                result.style.background = "rgba(0,255,100,0.08)";
+            } else {
+                computerScore++;
+                document.getElementById("computer-score").textContent = "🤖 Dator: " + computerScore;
+                result.textContent = "💻 Datorn vann!";
+                result.style.color = "#ff7070";
+                result.style.background = "rgba(255,60,60,0.08)";
+            }
+        }
+    </script>
+</body>
+</html>
