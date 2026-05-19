@@ -399,11 +399,10 @@
             <line x1="12" y1="17" x2="12" y2="21"></line>
           </svg>
         </div>
-        <h2>Desktop Recommended</h2>
-        <p>The interactive games in this section are optimized for larger screens and keyboard controls. For the best experience, please use a desktop computer.</p>
+        <h2>Dator rekommenderas</h2>
+        <p>Spelen och projekten i den här sektionen är optimerade för större skärmar och tangentbordsstyrning. För bästa upplevelse, vänligen besök den här sidan från en dator.</p>
         <div class="warning-buttons">
-          <a href="index.html" class="warning-btn home-btn">Go to Homepage</a>
-          <button class="warning-btn dismiss-btn" onclick="dismissWarning()">Continue anyway</button>
+          <a href="index.html" class="warning-btn home-btn">Till startsidan</a>
         </div>
       </div>
     </div>
@@ -558,13 +557,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script>
-      function dismissWarning() {
-        var warning = document.getElementById("mobileWarning");
-        if (warning) {
-          warning.style.display = "none";
-        }
-      }
-
       // GSAP
       gsap.registerPlugin(ScrollTrigger);
 
